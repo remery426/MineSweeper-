@@ -1,0 +1,234 @@
+<div id="wrapper">
+    <h1 class="font big">JackSweeper</h1>
+    <div class="buttons"> <button href="#" ng-click="reset(9,9,10)" class="glass greeen ">Beginner</button>
+        <button href="#" ng-click="reset(16,16,40)" class="glass yeellow">Intermediate</button>
+        <button href="#" ng-click="reset(16,30,99)" class="glass reed">Expert</button></div>
+    <div ng-if="gameStatus == 'lose'">
+        <img src='./images/lost.jpg' ng-click="reset(rows, cols, bombs)" class="inline">
+        <div class="inline font">
+                <p class=" font">{{bombs}} Bombs</p>
+                <p class=" font">Score: {{score}}</p><p> Time: {{time}} seconds</p>
+                <timer class="" />
+                </div>
+        <table>
+            <tbody>
+                <tr ng-repeat="row in grid track by $index">
+                    <td ng-repeat="box in row track by $index">
+                        <div class='box' ng-if="box.shown != true">
+                            <div class='flagged' ng-if="box.val == 'x'">
+                            </div>
+                        </div>
+                        <div class='box' ng-if="box.shown == true">
+                            <div class='zero' ng-if="box.val == 0">
+                            </div>
+                            <div class="blue" ng-if="box.val == 1">
+                                {{box.val}}
+                            </div>
+                            <div class="green" ng-if="box.val == 2">
+                                {{box.val}}
+                            </div>
+                            <div class="red" ng-if="box.val == 3">
+                                {{box.val}}
+                            </div>
+                            <div class="purple" ng-if="box.val == 4">
+                                {{box.val}}
+                            </div>
+                            <div class="orange" ng-if="box.val == 5">
+                                {{box.val}}
+                            </div>
+                            <div class="yellow" ng-if="box.val == 6">
+                                {{box.val}}
+                            </div>
+                            <div class="teal" ng-if="box.val == 7">
+                                {{box.val}}
+                            </div>
+                            <div class="magenta" ng-if="box.val == 8">
+                                {{box.val}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p id='lose' class="font">You Lose</p>
+    </div>
+    <div ng-if="gameStatus == 'brutal'">
+        <img src='./images/lose.jpg' ng-click="reset(rows, cols, bombs)" class="inline">
+        <div class="inline font">
+                <p class=" font">{{bombs}} Bombs</p>
+                <p class=" font">Score: {{score}}</p><p> Time: {{time}} seconds</p>
+                <timer class="" />
+                </div>
+        <table>
+            <tbody>
+                <tr ng-repeat="row in grid track by $index">
+                    <td ng-repeat="box in row track by $index">
+                        <div class='box' ng-if="box.shown != true">
+                            <div class='flagged' ng-if="box.val == 'x'">
+                            </div>
+                        </div>
+                        <div class='box' ng-if="box.shown == true">
+                            <div class='zero' ng-if="box.val == 0">
+                            </div>
+                            <div class="blue" ng-if="box.val == 1">
+                                {{box.val}}
+                            </div>
+                            <div class="green" ng-if="box.val == 2">
+                                {{box.val}}
+                            </div>
+                            <div class="red" ng-if="box.val == 3">
+                                {{box.val}}
+                            </div>
+                            <div class="purple" ng-if="box.val == 4">
+                                {{box.val}}
+                            </div>
+                            <div class="orange" ng-if="box.val == 5">
+                                {{box.val}}
+                            </div>
+                            <div class="yellow" ng-if="box.val == 6">
+                                {{box.val}}
+                            </div>
+                            <div class="teal" ng-if="box.val == 7">
+                                {{box.val}}
+                            </div>
+                            <div class="magenta" ng-if="box.val == 8">
+                                {{box.val}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p id='lose' class="font">This ain't your daddy's Minesweeper</p>
+    </div>
+    <div ng-if="gameStatus == 'win'">
+        <img src='./images/win.jpg' ng-click="reset(rows, cols, bombs)" class="inline">
+        <div class="inline font">
+                <p class=" font">{{bombs}} Bombs</p>
+                <p class=" font">Score: {{score}}</p><p> Time: {{time}} seconds</p>
+                <timer class="" />
+                </div>
+        <div ng-if="checkHighScore == true">
+            <form ng-submit="addUser(newUser)">
+                <h3 class="font">HighScore!</h3>
+                <p><input type="text" ng-model="newUser.name" placeholder="Username"></p>
+                <input type="submit" value="Enter Username">
+            </form>
+        </div>
+        <table>
+            <tbody>
+                <tr ng-repeat="row in grid track by $index">
+                    <td ng-repeat="box in row track by $index">
+                        <div class='box' ng-if="box.shown != true">
+                            <div class='flagged' ng-if="box.val == 'x'">
+                            </div>
+                        </div>
+                        <div class='box' ng-if="box.shown == true">
+                            <div class='zero' ng-if="box.val == 0">
+                            </div>
+                            <div class="blue" ng-if="box.val == 1">
+                                {{box.val}}
+                            </div>
+                            <div class="green" ng-if="box.val == 2">
+                                {{box.val}}
+                            </div>
+                            <div class="red" ng-if="box.val == 3">
+                                {{box.val}}
+                            </div>
+                            <div class="purple" ng-if="box.val == 4">
+                                {{box.val}}
+                            </div>
+                            <div class="orange" ng-if="box.val == 5">
+                                {{box.val}}
+                            </div>
+                            <div class="yellow" ng-if="box.val == 6">
+                                {{box.val}}
+                            </div>
+                            <div class="teal" ng-if="box.val == 7">
+                                {{box.val}}
+                            </div>
+                            <div class="magenta" ng-if="box.val == 8">
+                                {{box.val}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p id='win' class="font">You Win!</p>
+    </div>
+    <div ng-if="gameStatus == 'playing'">
+        <div class="playing">
+            <div id="header">
+                <img src='./images/playing.jpg' ng-click="reset(rows, cols, bombs)" class="inline">
+                <div class="inline font">
+                <p class=" font">{{bombs}} Bombs</p>
+                <p class=" font">Score: {{score}}</p><p> Time: {{time}} seconds</p>
+                <timer class="" />
+                </div>
+            </div>
+
+
+            <table>
+                <tbody>
+                    <tr ng-repeat="row in grid track by $index">
+                        <td ng-repeat="box in row track by $index">
+                            <div class='box' ng-click="click(box.x, box.y)" ng-if="box.shown != true" ng-right-click="right(box.x, box.y)">
+                                <div class='flagged' ng-if="box.flagged == true">
+                                </div>
+                            </div>
+                            <div class='box' ng-click="click(box.x, box.y)" ng-if="box.shown == true">
+                                <div class='zero' ng-if="box.val == 0">
+                                </div>
+                                <div class="blue" ng-if="box.val == 1">
+                                    {{box.val}}
+                                </div>
+                                <div class="green" ng-if="box.val == 2">
+                                    {{box.val}}
+                                </div>
+                                <div class="red" ng-if="box.val == 3">
+                                    {{box.val}}
+                                </div>
+                                <div class="purple" ng-if="box.val == 4">
+                                    {{box.val}}
+                                </div>
+                                <div class="orange" ng-if="box.val == 5">
+                                    {{box.val}}
+                                </div>
+                                <div class="yellow" ng-if="box.val == 6">
+                                    {{box.val}}
+                                </div>
+                                <div class="teal" ng-if="box.val == 7">
+                                    {{box.val}}
+                                </div>
+                                <div class="magenta" ng-if="box.val == 8">
+                                    {{box.val}}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="leaderboard" class="font">
+        <div class="inline list">
+            <h3>Beginner</h3>
+            <ol>
+                <li ng-repeat="user in beginners | limitTo: 10">{{ user.name }}   ({{ user.time }})</li>
+            </ol>
+        </div>
+        <div class="inline list">
+            <h3>Intermediate</h3>
+            <ol>
+                <li ng-repeat="user in intermediate | limitTo: 10">{{ user.name }}   ({{ user.time }})</li>
+            </ol>
+        </div>
+        <div class="inline list">
+            <h3>Expert</h3>
+            <ol>
+                <li ng-repeat="user in experts | limitTo: 10">{{ user.name }}   ({{ user.time }})</li>
+            </ol>
+        </div>
+    </div>
+</div>
